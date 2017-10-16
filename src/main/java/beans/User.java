@@ -1,6 +1,7 @@
 package beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Created by RuLemur on 15.10.2017 in 18:00.
@@ -98,6 +99,18 @@ public class User {
 
     public void setView_count(String view_count) {
         this.view_count = view_count;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + login + '\'' +
+                ", id=" + id +
+                ", displayName='" + display_name + '\'' +
+                ", type='" + type + '\'' +
+                ", bio='" + description + '\'' +
+                ", view_count=" + view_count +
+                '}';
     }
 
 }

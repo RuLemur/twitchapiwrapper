@@ -22,7 +22,7 @@
             <systemPath>${project.basedir}/lib/async-http-client-2.1.2.jar</systemPath>
         </dependency>
 
-        <!-- data-binding; ObjectMapper, JsonNode and related classes are here -->
+        <!-- users-binding; ObjectMapper, JsonNode and related classes are here -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

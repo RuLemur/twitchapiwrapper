@@ -1,9 +1,13 @@
 package resources;
 
+import beans.User;
 import beans.Users;
 import handlers.UsersResponseHandler;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -19,18 +23,21 @@ public class UsersResource extends AbstractResource {
     }
 
     public void get(final UsersResponseHandler handler) {
-        String url = String.format("%s/users?login=thewide001", getBaseUrl());
+        String url = String.format("%s/users/follows?to_id=23161357 ", getBaseUrl());
 
         http.get(url, new TwitchHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
-                    Users value = objectMapper.readValue(content, Users.class);
-                    handler.onSuccess(value.getUserList());
+
+                    List<User> value = Arrays.asList(
+                            objectMapper.treeToValue(objectMapper.readTree(content).get("data"), User[].class));
+                    handler.onSuccess(value);
                 } catch (IOException ex) {
                     handler.onFailure(ex);
                 }
             }
         });
+
     }
 }

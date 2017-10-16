@@ -1,6 +1,7 @@
 package beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonRootName(value = "data")
 public class Users {
 
     List<User> userList;

@@ -30,7 +30,7 @@ public abstract class AbstractResource {
 
     private void configureObjectMapper() {
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
-        objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
+//        objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
     }
 
     public void setAuthAccessToken(String accessToken) {
