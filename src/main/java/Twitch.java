@@ -21,6 +21,7 @@ public class Twitch {
     private static final String DEFAULT_BASE_URL = "https://api.twitch.tv/helix";
     private String clientId; // User's app client Id
     private Map<String, AbstractResource> resources;
+    private String pagination;
 
     public Twitch() {
         resources = new HashMap<String, AbstractResource>();
@@ -47,9 +48,16 @@ public class Twitch {
         return resources.get(key);
     }
 
+    public void setPagination(String pagination) {
+        this.pagination = pagination;
+    }
 
-    public static void main(String[] args) {
-        Twitch twitch = new Twitch();
+    public String getPagination() {
+        return pagination;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        final Twitch twitch = new Twitch();
         twitch.setClientId("smo0k1o7t0otmepejy137cg7wrmqz3g");
 //       twitch.users().get(new UsersResponseHandler() {
 //           public void onSuccess(UsersData usersData) {
@@ -70,7 +78,8 @@ public class Twitch {
                     System.out.println(streamsData.getData().get(i).toString());
                 }
                 System.out.println("\nPAGINATION: " + streamsData.getPagination());
-
+                String pagination = streamsData.getPagination().toString();
+                twitch.setPagination(pagination);
             }
 
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {
@@ -81,5 +90,27 @@ public class Twitch {
                 throwable.printStackTrace();
             }
         });
+        Thread.sleep(5000);
+        if (twitch.getPagination() != null) {
+            twitch.streams().get(twitch.getPagination(), new StreamsResponseHandler() {
+                public void onSuccess(StreamsData streamsData) {
+                    System.out.println("\n2 PAGE");
+                    for (int i = 0; i < streamsData.getData().size(); i++) {
+                        System.out.println(streamsData.getData().get(i).toString());
+                    }
+                    System.out.println("\nPAGINATION: " + streamsData.getPagination());
+                    String pagination = streamsData.getPagination().toString();
+                    twitch.setPagination(pagination);
+                }
+
+                public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                    System.out.println(statusCode);
+                }
+
+                public void onFailure(Throwable throwable) {
+                    throwable.printStackTrace();
+                }
+            });
+        }
     }
 }

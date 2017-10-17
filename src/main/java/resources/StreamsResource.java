@@ -38,4 +38,24 @@ public class StreamsResource extends AbstractResource {
         });
 
     }
+
+    public void get(String pagination ,final StreamsResponseHandler handler) {
+        String url = String.format("%s/streams", getBaseUrl());
+        RequestParams params = new RequestParams();
+        params.put("after", pagination);
+        params.put("first", "100");
+//        params.put("login", "lemur_ru");
+        http.get(url,params, new TwitchHttpResponseHandler(handler) {
+            @Override
+            public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
+                try {
+                    StreamsData streamsData = objectMapper.readValue(content, StreamsData.class);
+                    handler.onSuccess(streamsData);
+                } catch (IOException ex) {
+                    handler.onFailure(ex);
+                }
+            }
+        });
+
+    }
 }
