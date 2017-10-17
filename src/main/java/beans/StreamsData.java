@@ -12,6 +12,7 @@ import java.util.List;
 public class StreamsData {
 
     List<Stream> data;
+    private Pagination pagination;
 
     public List<Stream> getData() {
         return data;
@@ -19,5 +20,13 @@ public class StreamsData {
 
     public void setData(List<Stream> data) {
         this.data = data;
+    }
+
+    public Pagination getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
     }
 }

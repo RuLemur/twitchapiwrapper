@@ -3,6 +3,8 @@ package beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,42 +15,39 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Stream {
 
-    @JsonProperty("id")
-    private String id;
-    @JsonProperty("user_id")
-    private String userId;
-    @JsonProperty("game_id")
-    private String gameId;
+    private long id;
+    private String user_id;
+    private String game_id;
     private List<String> community_ids;
     private String type;
     private String title;
     private String viewer_count;
-    private String started_at;
+    private Date started_at;
     private String language;
     private String thumbnail_url;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     public String getUserId() {
-        return userId;
+        return user_id;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public String getGameId() {
-        return gameId;
+        return game_id;
     }
 
     public void setGameId(String gameId) {
-        this.gameId = gameId;
+        this.game_id = gameId;
     }
 
     public List<String> getCommunity_ids() {
@@ -83,11 +82,11 @@ public class Stream {
         this.viewer_count = viewer_count;
     }
 
-    public String getStarted_at() {
+    public Date getStarted_at() {
         return started_at;
     }
 
-    public void setStarted_at(String started_at) {
+    public void setStarted_at(Date started_at) {
         this.started_at = started_at;
     }
 
@@ -110,10 +109,11 @@ public class Stream {
     @Override
     public String toString() {
         return "Stream{" +
-                ", id=" + id +
+                " id=" + id +
                 ", type='" + type + '\'' +
                 ", bio='" + title + '\'' +
                 ", view_count=" + viewer_count +
+//                ", start_Date=" + started_at.toString() +
                 '}';
     }
 }

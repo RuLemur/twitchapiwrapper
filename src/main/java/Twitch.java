@@ -38,6 +38,7 @@ public class Twitch {
     public UsersResource users() {
         return (UsersResource) getResource("users");
     }
+
     public StreamsResource streams() {
         return (StreamsResource) getResource("streams");
     }
@@ -48,8 +49,8 @@ public class Twitch {
 
 
     public static void main(String[] args) {
-       Twitch twitch = new Twitch();
-       twitch.setClientId("smo0k1o7t0otmepejy137cg7wrmqz3g");
+        Twitch twitch = new Twitch();
+        twitch.setClientId("smo0k1o7t0otmepejy137cg7wrmqz3g");
 //       twitch.users().get(new UsersResponseHandler() {
 //           public void onSuccess(UsersData usersData) {
 //               System.out.println(usersData.getData().get(0).toString());
@@ -63,21 +64,22 @@ public class Twitch {
 //           }
 //       });
 
-       twitch.streams().get(new StreamsResponseHandler() {
-           public void onSuccess(StreamsData streamsData) {
-               for (int i = 0; i < streamsData.getData().size(); i++) {
-                   System.out.println(streamsData.getData().get(i).toString());
-               }
+        twitch.streams().get(new StreamsResponseHandler() {
+            public void onSuccess(StreamsData streamsData) {
+                for (int i = 0; i < streamsData.getData().size(); i++) {
+                    System.out.println(streamsData.getData().get(i).toString());
+                }
+                System.out.println("\nPAGINATION: " + streamsData.getPagination());
 
-           }
+            }
 
-           public void onFailure(int statusCode, String statusMessage, String errorMessage) {
-               System.out.println(statusCode);
-           }
+            public void onFailure(int statusCode, String statusMessage, String errorMessage) {
+                System.out.println(statusCode);
+            }
 
-           public void onFailure(Throwable throwable) {
+            public void onFailure(Throwable throwable) {
                 throwable.printStackTrace();
-           }
-       });
+            }
+        });
     }
 }
