@@ -2,6 +2,7 @@ package resources;
 
 import beans.UsersData;
 import com.mb3364.http.RequestParams;
+import handlers.StreamsResponseHandler;
 import handlers.UsersResponseHandler;
 
 import java.io.IOException;
@@ -19,18 +20,15 @@ public class UsersResource extends AbstractResource {
         super(baseUrl);
     }
 
-    public void get(final UsersResponseHandler handler) {
-        String url = String.format("%s/users?login=thewide001", getBaseUrl());
+    public void get(String channelName, final UsersResponseHandler handler) {
+        String url = String.format("%s/users", getBaseUrl());
         RequestParams params = new RequestParams();
-//        params.put("login", "thewide001");
-//        params.put("login", "lemur_ru");
-        http.get(url,params, new TwitchHttpResponseHandler(handler) {
+        params.put("login",channelName);
+        http.get(url, params, new TwitchHttpResponseHandler(handler) {
             @Override
             public void onSuccess(int statusCode, Map<String, List<String>> headers, String content) {
                 try {
                     UsersData usersData = objectMapper.readValue(content, UsersData.class);
-//                    List<User> value = Arrays.asList(
-//                            objectMapper.treeToValue(objectMapper.readTree(content).get("data"), User[].class));
                     handler.onSuccess(usersData);
                 } catch (IOException ex) {
                     handler.onFailure(ex);
