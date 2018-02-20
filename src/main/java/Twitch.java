@@ -1,16 +1,8 @@
-import beans.StreamsData;
-import beans.User;
-import beans.UsersData;
-import com.mb3364.http.AsyncHttpClient;
-import com.mb3364.http.StringHttpResponseHandler;
-import handlers.StreamsResponseHandler;
-import handlers.UsersResponseHandler;
 import resources.AbstractResource;
 import resources.StreamsResource;
 import resources.UsersResource;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

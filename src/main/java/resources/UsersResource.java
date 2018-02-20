@@ -1,8 +1,7 @@
 package resources;
 
-import beans.UsersData;
+import beans.data.UsersData;
 import com.mb3364.http.RequestParams;
-import handlers.StreamsResponseHandler;
 import handlers.UsersResponseHandler;
 
 import java.io.IOException;

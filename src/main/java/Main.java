@@ -1,6 +1,4 @@
-import beans.StreamsData;
-import beans.UsersData;
-import handlers.StreamsResponseHandler;
+import beans.data.UsersData;
 import handlers.UsersResponseHandler;
 
 public class Main {
@@ -8,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         final Twitch twitch = new Twitch();
         twitch.setClientId("smo0k1o7t0otmepejy137cg7wrmqz3g");
-        String channelName = "dreadztv";
+        String channelName = "dreadztv®";
         twitch.users().get(channelName, new UsersResponseHandler() {
 
             public void onFailure(int statusCode, String statusMessage, String errorMessage) {

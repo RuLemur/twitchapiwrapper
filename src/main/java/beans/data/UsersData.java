@@ -1,5 +1,6 @@
-package beans;
+package beans.data;
 
+import beans.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;

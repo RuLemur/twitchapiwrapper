@@ -1,10 +1,8 @@
 package resources;
 
-import beans.Error;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import beans.entity.Error;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mb3364.http.AsyncHttpClient;
 import com.mb3364.http.StringHttpResponseHandler;
 import handlers.BaseFailureHandler;

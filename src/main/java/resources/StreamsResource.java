@@ -1,10 +1,8 @@
 package resources;
 
-import beans.StreamsData;
-import beans.UsersData;
+import beans.data.StreamsData;
 import com.mb3364.http.RequestParams;
 import handlers.StreamsResponseHandler;
-import handlers.UsersResponseHandler;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package beans;
+package beans.entity;
 
 public class Pagination {
     private String cursor;

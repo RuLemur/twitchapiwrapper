@@ -1,5 +1,7 @@
-package beans;
+package beans.data;
 
+import beans.entity.Pagination;
+import beans.entity.Stream;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
